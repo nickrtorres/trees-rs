@@ -24,7 +24,7 @@ impl<T: Ord> BinaryTree<T> {
         }
     }
 
-    pub fn first(&'_ self) -> Option<&'_ T> {
+    pub fn first<'a>(&'a self) -> Option<&'a T> {
         match self {
             Self::Empty => None,
             Self::NonEmpty(b) => Some(&b.element),
@@ -56,7 +56,7 @@ impl<T: Ord> BinaryTree<T> {
         self.get(value).is_some()
     }
 
-    pub fn get(&'_ self, value: &T) -> Option<&'_ T> {
+    pub fn get<'a>(&'a self, value: &T) -> Option<&'a T> {
         match *self {
             Self::Empty => None,
             Self::NonEmpty(ref b) => match Ord::cmp(&b.element, value) {
