@@ -3,7 +3,7 @@
 //! *Programming Rust* by Jim Blandy and Jason Orendorff.
 use std::cmp::{Ord, Ordering};
 
-/// A binary has two variants: Empty and `NonEmpty`. A NonEmpty variant
+/// A binary has two variants: Empty and `NonEmpty`. A `NonEmpty` variant
 /// represents a node on the tree that has pointers to two other `BinaryTree`
 /// nodes. An `Empty` variant represents a leaf.
 #[derive(PartialEq, Debug)]
