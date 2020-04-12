@@ -1,6 +1,7 @@
 #![warn(clippy::all, clippy::pedantic)]
 //! A *complete* implementation of the `BinaryTree` sample given in
 //! *Programming Rust* by Jim Blandy and Jason Orendorff.
+use std::cmp::{Ord, Ordering};
 
 /// A binary has two variants: Empty and `NonEmpty`. A NonEmpty variant
 /// represents a node on the tree that has pointers to two other `BinaryTree`
@@ -50,6 +51,21 @@ impl<T: Ord> BinaryTree<T> {
             }
         }
     }
+
+    pub fn contains(&self, value: &T) -> bool {
+        self.get(value).is_some()
+    }
+
+    pub fn get(&'_ self, value: &T) -> Option<&'_ T> {
+        match *self {
+            Self::Empty => None,
+            Self::NonEmpty(ref b) => match Ord::cmp(&b.element, value) {
+                Ordering::Less => b.left.get(value),
+                Ordering::Greater => b.right.get(value),
+                Ordering::Equal => Some(&b.element),
+            },
+        }
+    }
 }
 
 #[derive(PartialEq, Debug)]
@@ -80,5 +96,37 @@ mod tests {
 
         assert_eq!(3, tree.size());
         assert_eq!(Some(&1), tree.first());
+    }
+
+    #[test]
+    fn it_can_find_elements_in_the_tree() {
+        type Tree = BinaryTree<u32>;
+        let mut tree = Tree::new();
+
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(4);
+        tree.add(5);
+        tree.add(6);
+        tree.add(7);
+
+        assert!(tree.contains(&4));
+    }
+
+    #[test]
+    fn it_can_retrieve_elements_from_the_tree() {
+        type Tree = BinaryTree<u32>;
+        let mut tree = Tree::new();
+
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
+        tree.add(4);
+        tree.add(5);
+        tree.add(6);
+        tree.add(7);
+
+        assert_eq!(Some(&4), tree.get(&4));
     }
 }
