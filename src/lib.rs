@@ -13,10 +13,12 @@ pub enum BinaryTree<T> {
 }
 
 impl<T: Ord> BinaryTree<T> {
+    // TODO: use Default?
     pub fn new() -> Self {
         BinaryTree::Empty
     }
 
+    /// Gets the number of elements from the current element down
     pub fn size(&self) -> usize {
         match *self {
             Self::Empty => 0,
@@ -24,6 +26,9 @@ impl<T: Ord> BinaryTree<T> {
         }
     }
 
+    /// Gets a reference to the root value.
+    ///
+    /// Returns `None` if the tree is `BinaryTree::Empty`
     pub fn first<'a>(&'a self) -> Option<&'a T> {
         match self {
             Self::Empty => None,
@@ -31,6 +36,9 @@ impl<T: Ord> BinaryTree<T> {
         }
     }
 
+    /// Adds `value` to the tree
+    ///
+    /// TODO: handle the case where `value` is already in the tree.
     pub fn add(&mut self, value: T) {
         match *self {
             Self::Empty => {
@@ -48,10 +56,13 @@ impl<T: Ord> BinaryTree<T> {
         }
     }
 
+    /// Determines if `value` is present in the tree
     pub fn contains(&self, value: &T) -> bool {
         self.get(value).is_some()
     }
 
+    /// Gets a reference to `value` in the tree or `None` if `value` doesn't
+    /// exist in the tree
     pub fn get<'a>(&'a self, value: &T) -> Option<&'a T> {
         match *self {
             Self::Empty => None,
