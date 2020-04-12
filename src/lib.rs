@@ -40,15 +40,11 @@ impl<T: Ord> BinaryTree<T> {
                     right: Self::Empty,
                 }));
             }
-            Self::NonEmpty(ref mut b) => {
-                if b.element < value {
-                    b.left.add(value);
-                } else if b.element > value {
-                    b.right.add(value);
-                } else {
-                    unimplemented!()
-                }
-            }
+            Self::NonEmpty(ref mut b) => match Ord::cmp(&b.element, &value) {
+                Ordering::Less => b.left.add(value),
+                Ordering::Greater => b.right.add(value),
+                Ordering::Equal => unimplemented!(),
+            },
         }
     }
 
