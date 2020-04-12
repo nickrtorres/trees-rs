@@ -2,6 +2,7 @@
 //! A *complete* implementation of the `BinaryTree` sample given in
 //! *Programming Rust* by Jim Blandy and Jason Orendorff.
 use std::cmp::{Ord, Ordering};
+use std::iter::FromIterator;
 
 /// A binary has two variants: Empty and `NonEmpty`. A `NonEmpty` variant
 /// represents a node on the tree that has pointers to two other `BinaryTree`
@@ -75,6 +76,20 @@ impl<T: Ord> BinaryTree<T> {
     }
 }
 
+impl<T: Ord> FromIterator<T> for BinaryTree<T> {
+    fn from_iter<I>(iter: I) -> Self
+    where
+        I: IntoIterator<Item = T>,
+    {
+        let mut tree = BinaryTree::new();
+        for e in iter {
+            tree.add(e);
+        }
+
+        tree
+    }
+}
+
 #[derive(PartialEq, Debug)]
 pub struct TreeNode<T> {
     element: T,
@@ -135,5 +150,11 @@ mod tests {
         tree.add(7);
 
         assert_eq!(Some(&4), tree.get(&4));
+    }
+
+    #[test]
+    fn it_can_build_from_an_iterator() {
+        let tree: BinaryTree<u32> = vec![1, 2, 3, 4].iter().cloned().collect();
+        assert_eq!(4, tree.size());
     }
 }
