@@ -110,6 +110,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
         })
     }
 
+    /// Returns the largest (rightmost) element in the tree
     pub fn max(&self) -> Option<&T> {
         self.root.as_ref().and_then(|b| match b.right.root {
             None => Some(&b.element),
