@@ -147,7 +147,7 @@ impl<T: Ord + fmt::Debug> FromIterator<T> for BinaryTree<T> {
     where
         I: IntoIterator<Item = T>,
     {
-        let mut tree: BinaryTree<T> = Default::default();
+        let mut tree = BinaryTree::<T>::default();
         for e in iter {
             tree.add(e);
         }
@@ -162,7 +162,7 @@ mod tests {
 
     #[test]
     fn it_can_store_n_elements() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree = BinaryTree::<u32>::default();
 
         tree.add(1);
         tree.add(2);
@@ -174,7 +174,7 @@ mod tests {
 
     #[test]
     fn it_can_find_elements_in_the_tree() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree = BinaryTree::<u32>::default();
 
         tree.add(1);
         tree.add(2);
@@ -189,7 +189,7 @@ mod tests {
 
     #[test]
     fn it_can_retrieve_elements_from_the_tree() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree = BinaryTree::<u32>::default();
 
         tree.add(1);
         tree.add(2);
@@ -214,7 +214,7 @@ mod tests {
 
     #[test]
     fn it_can_find_the_min() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree = BinaryTree::<u32>::default();
 
         tree.add(7);
         tree.add(6);
@@ -229,7 +229,7 @@ mod tests {
 
     #[test]
     fn it_can_find_the_max() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree = BinaryTree::<u32>::default();
 
         tree.add(8);
         tree.add(1);
@@ -246,7 +246,7 @@ mod tests {
     /* TODO
     #[test]
     fn it_can_turn_into_an_iterator() {
-        let mut tree: BinaryTree<u32> = Default::default();
+        let mut tree= BinaryTree::<u32>::default();
 
         tree.add(1);
         tree.add(2);
