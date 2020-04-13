@@ -204,7 +204,7 @@ mod tests {
 
     #[test]
     fn it_can_build_from_an_iterator() {
-        let tree: BinaryTree<u32> = vec![1, 2, 3, 4].iter().cloned().collect();
+        let tree: BinaryTree<u32> = vec![1, 2, 3, 4].into_iter().collect();
         assert_eq!(4, tree.size());
         assert!(tree.contains(&1));
         assert!(tree.contains(&2));
