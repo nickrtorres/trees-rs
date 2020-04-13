@@ -7,11 +7,6 @@ use std::default::Default;
 use std::fmt;
 use std::iter::FromIterator;
 
-/// Jim Blandy and Jason Orendorff implement this as an enum with two variants:
-/// `Empty` and `NonEmpty`. While this works, it is very similar to Rust's
-/// built in [`Option` type][wheel].
-///
-/// [wheel]: <https://rust-unofficial.github.io/too-many-lists/second-option.html>
 #[derive(PartialEq, Debug)]
 struct TreeNode<T> {
     element: T,
@@ -19,6 +14,11 @@ struct TreeNode<T> {
     right: BinaryTree<T>,
 }
 
+/// Jim Blandy and Jason Orendorff implement this as an enum with two variants:
+/// `Empty` and `NonEmpty`. While this works, it is very similar to Rust's
+/// built in [`Option` type][wheel].
+///
+/// [wheel]: <https://rust-unofficial.github.io/too-many-lists/second-option.html>
 #[derive(PartialEq, Debug)]
 pub struct BinaryTree<T> {
     root: Option<Box<TreeNode<T>>>,
