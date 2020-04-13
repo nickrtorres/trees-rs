@@ -24,6 +24,7 @@ pub struct BinaryTree<T> {
 }
 
 impl<T> Default for BinaryTree<T> {
+    #[must_use]
     fn default() -> Self {
         BinaryTree { root: None }
     }
@@ -52,6 +53,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
     }
 
     /// Gets the number of elements from the current element down
+    #[must_use]
     pub fn size(&self) -> usize {
         self.root
             .as_ref()
@@ -61,6 +63,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
     /// Gets a reference to the root value.
     ///
     /// Returns `None` if the tree is empty
+    #[must_use]
     pub fn first<'a>(&'a self) -> Option<&'a T> {
         self.root.as_ref().map(|b| &b.element)
     }
@@ -86,12 +89,14 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
     }
 
     /// Determines if `value` is present in the tree
+    #[must_use]
     pub fn contains(&self, value: &T) -> bool {
         self.get(value).is_some()
     }
 
     /// Gets a reference to `value` in the tree or `None` if `value` doesn't
     /// exist in the tree
+    #[must_use]
     pub fn get<'a>(&'a self, value: &T) -> Option<&'a T> {
         self.root
             .as_ref()
@@ -103,6 +108,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
     }
 
     /// Returns the smallest (leftmost) element in the tree
+    #[must_use]
     pub fn min(&self) -> Option<&T> {
         self.root.as_ref().and_then(|b| match b.left.root {
             None => Some(&b.element),
@@ -111,6 +117,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
     }
 
     /// Returns the largest (rightmost) element in the tree
+    #[must_use]
     pub fn max(&self) -> Option<&T> {
         self.root.as_ref().and_then(|b| match b.right.root {
             None => Some(&b.element),
