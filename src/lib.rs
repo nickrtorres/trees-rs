@@ -12,6 +12,13 @@ use std::iter::FromIterator;
 ///
 /// [wheel]: <https://rust-unofficial.github.io/too-many-lists/second-option.html>
 #[derive(PartialEq, Debug)]
+struct TreeNode<T> {
+    element: T,
+    left: BinaryTree<T>,
+    right: BinaryTree<T>,
+}
+
+#[derive(PartialEq, Debug)]
 pub struct BinaryTree<T> {
     root: Option<Box<TreeNode<T>>>,
 }
@@ -146,13 +153,6 @@ impl<T: Ord + fmt::Debug> FromIterator<T> for BinaryTree<T> {
 
         tree
     }
-}
-
-#[derive(PartialEq, Debug)]
-pub struct TreeNode<T> {
-    element: T,
-    left: BinaryTree<T>,
-    right: BinaryTree<T>,
 }
 
 #[cfg(test)]
