@@ -1,4 +1,5 @@
 #![warn(clippy::all, clippy::pedantic)]
+
 //! A *complete* implementation of the `BinaryTree` sample given in
 //! *Programming Rust* by Jim Blandy and Jason Orendorff.
 use std::cmp::{Ord, Ordering};
