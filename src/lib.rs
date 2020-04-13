@@ -60,7 +60,7 @@ impl<T: Ord + fmt::Debug> BinaryTree<T> {
 
     /// Gets a reference to the root value.
     ///
-    /// Returns `None` if the tree is `BinaryTree::Empty`
+    /// Returns `None` if the tree is empty
     pub fn first<'a>(&'a self) -> Option<&'a T> {
         self.root.as_ref().map(|b| &b.element)
     }
